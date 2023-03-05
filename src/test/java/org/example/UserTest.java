@@ -22,17 +22,24 @@ class UserTest {
 
     @Test
     void testEmailIsValid() {
-        User user1 = new User("Alex", "Alex&jupiter.part");
-        User user2 = new User("Alex", "Alex@jupiter,part");
 
-        assertFalse(user1.isValid());
-        assertFalse(user2.isValid());
+        assertThrows(IllegalArgumentException.class, () -> new User("Alex", "Alex&jupiter.part"));
+        assertThrows(IllegalArgumentException.class, () -> new User("Alex", "Alex@jupiter,part"));
+
+//        User user1 = new User("Alex", "Alex&jupiter.part");
+//        User user2 = new User("Alex", "Alex@jupiter,part");
+
+//        assertFalse(user1.isValid());
+//        assertFalse(user2.isValid());
     }
 
     @Test
     void testLoginNotEqualsEmail() {
-        User user1 = new User("Alex@jupiter.part", "Alex@jupiter.part");
 
-        assertFalse(user1.isValid());
+        assertThrows(IllegalArgumentException.class, () -> new User("Alex@jupiter.part", "Alex@jupiter.part"));
+
+//        User user1 = new User("Alex@jupiter.part", "Alex@jupiter.part");
+//
+//        assertFalse(user1.isValid());
     }
 }

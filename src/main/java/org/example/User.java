@@ -11,19 +11,21 @@ public class User {
     }
 
     public User(String login, String email) {
-        this.login = login;
-        this.email = email;
+        if(isValid(login, email)) {
+            this.login = login;
+            this.email = email;
+        }else {
+            throw new IllegalArgumentException();
+        }
     }
 
-    public boolean isValid(){
-        return this.login != null
-                && !this.login.isEmpty()
-                && this.email != null
-                && !this.email.isEmpty()
-                && this.email.contains("@")
-                && this.email.contains(".")
-                && !this.login.equals(this.email);
-
+    private static boolean isValid(String login, String email){
+        return login != null
+                && !login.isEmpty()
+                && email != null
+                && email.contains("@")
+                && email.contains(".")
+                && !login.equals(email);
     }
 
     public String getLogin() {
